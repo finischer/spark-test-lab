@@ -1,50 +1,64 @@
-# React + TypeScript + Vite
+# Spark Test Lab
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **Spark Test Lab**! This repository hosts a web application designed to provide an interactive interface for generating test data for Apache Spark DataFrames and extracting the corresponding Spark schema from the input data.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Interactive Data Input:** Enter your test data in JSON format and see the corresponding Spark schema generated in real-time.
+- **Spark Schema Extraction:** Automatically infer Spark-compatible schemas from the provided data.
+- **User-Friendly Interface:** Simple and intuitive UI for quickly creating and validating test data for Spark.
+- **Web-Based Solution:** No setup or installations required—everything is available directly from the website.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The web application is live and can be accessed at the following URL:
 
-- Configure the top-level `parserOptions` property like this:
+[Link to the Spark Test Lab Website]()
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Local Development
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+To run the project locally, follow these steps:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Clone the repository:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   ```bash
+   git clone https://github.com/finischer/spark-test-lab.git
+   cd spark-test-lab
+   ```
+
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+### Project Structure
+
+- **/src** – Contains the main source code for the ReactJS application.
+- **/components** – Reusable UI components, such as the text area for input and the schema display.
+- **/utils** – Utility functions for processing JSON input and inferring Spark schemas.
+
+## Usage
+
+1. Open the app in your browser.
+2. Paste your JSON test data into the input field.
+3. The corresponding Spark schema will be displayed in real-time in the output field.
+4. You can edit the JSON input and see the schema update instantly.
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have ideas for new features, feel free to open an issue or submit a pull request. Please follow the [contributing guidelines](CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+**Spark Test Lab** provides a quick and easy way to work with Spark DataFrames and their schemas through an intuitive web interface.
