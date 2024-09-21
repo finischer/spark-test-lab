@@ -2,15 +2,15 @@ import { JSDataTypeString, SparkDataTypeString } from "@/enums/spark";
 import { getSparkDataType, inferType } from "./spark";
 import { UnknownArray } from "@/types/common";
 
-const INT32_BYTES = 32;
-const INT64_BYTES = 64;
+const INT32_BITS = 32;
+const INT64_BITS = 64;
 const MAX_FLOAT_PRECISION = 7;
 
-export const MIN_INT32 = Math.pow(2, INT32_BYTES) * -1;
-export const MAX_INT32 = Math.pow(2, INT32_BYTES) - 1;
+export const MIN_INT32 = Math.pow(2, INT32_BITS) * -1;
+export const MAX_INT32 = Math.pow(2, INT32_BITS) - 1;
 
-export const MIN_INT64 = Math.pow(2, INT64_BYTES) * -1;
-export const MAX_INT64 = Math.pow(2, INT64_BYTES) - 1;
+export const MIN_INT64 = Math.pow(2, INT64_BITS) * -1;
+export const MAX_INT64 = Math.pow(2, INT64_BITS) - 1;
 
 export const dTypeMap = {
   [JSDataTypeString.STRING]: SparkDataTypeString.STRING,
