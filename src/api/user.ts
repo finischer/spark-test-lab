@@ -1,22 +1,37 @@
-import { sparkSchema } from "./../classes/SparkSchema";
 import { SparkArrayType, SparkStructType } from "./../types/spark";
 import { SparkDataTypeString } from "@/enums/spark";
 import { SchemaSettings, UnknownObject } from "@/types/common";
 
-export const getRandomUser = async (settings: SchemaSettings) => {
-  const randomNumber = 1 + Math.floor(Math.random() * 9);
-
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${randomNumber}`);
-
-  const user = await res.json();
-
-  const schema = sparkSchema.infer(user);
-  const userReduced = adaptSchema(schema, user, settings);
-
-  return userReduced;
+type CachedUser = {
+  raw: UnknownObject | null;
+  adapted: UnknownObject | null;
 };
 
-const adaptSchema = (schema: SparkStructType, obj: UnknownObject, settings: SchemaSettings) => {
+export type Action = "UPDATE" | "GET" | "REFRESH";
+
+export const getCachedRandomUser = () => {
+  const cachedUser: CachedUser = {
+    raw: null,
+    adapted: null,
+  };
+
+  return async (action: Action = "GET", newRawUser: UnknownObject | null = null) => {
+    if (cachedUser.raw && action !== "REFRESH") {
+      if (action === "UPDATE" && newRawUser) {
+        cachedUser.raw = newRawUser;
+      }
+      return cachedUser.raw;
+    }
+
+    const randomNumber = 1 + Math.floor(Math.random() * 9);
+    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${randomNumber}`);
+    const user = (await res.json()) as UnknownObject;
+    cachedUser.raw = user;
+    return user;
+  };
+};
+
+export const adaptSchema = (schema: SparkStructType, obj: UnknownObject, settings: SchemaSettings) => {
   for (const field of schema.fields) {
     const key = field.name;
     const fieldType = field.type;
