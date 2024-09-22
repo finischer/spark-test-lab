@@ -1,5 +1,5 @@
+import { sparkSchema } from "@/classes/SparkSchema";
 import { JSDataTypeString, SparkDataTypeString } from "@/enums/spark";
-import { getSparkDataType, inferType } from "./spark";
 import { UnknownArray } from "@/types/common";
 
 const INT32_BITS = 32;
@@ -54,7 +54,7 @@ export const handleArrayType = (array: UnknownArray) => {
   if (array.length === 0) return elementType;
   if (Array.isArray(array[0])) return SparkDataTypeString.ARRAY;
 
-  const jsType = inferType(array[0]);
+  const jsType = sparkSchema.inferType(array[0]);
 
-  return getSparkDataType(jsType);
+  return sparkSchema.getDataType(jsType);
 };

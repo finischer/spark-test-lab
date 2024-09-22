@@ -1,26 +1,26 @@
-import { SparkDataTypeString as EnumSparkDataType } from "@/enums/spark";
+import { SparkDataTypeString } from "@/enums/spark";
 
 export type SparkDataType =
   | SparkStructType
   | SparkArrayType
-  | EnumSparkDataType.STRING
-  | EnumSparkDataType.LONG
-  | EnumSparkDataType.INTEGER
-  | EnumSparkDataType.FLOAT
-  | EnumSparkDataType.DOUBLE
-  | EnumSparkDataType.NULL
-  | EnumSparkDataType.BOOLEAN;
+  | SparkDataTypeString.STRING
+  | SparkDataTypeString.LONG
+  | SparkDataTypeString.INTEGER
+  | SparkDataTypeString.FLOAT
+  | SparkDataTypeString.DOUBLE
+  | SparkDataTypeString.NULL
+  | SparkDataTypeString.BOOLEAN;
 
 export type SparkArrayType = {
   containsNull: boolean;
   elementType: SparkDataType;
-  type: EnumSparkDataType.ARRAY;
+  type: SparkDataTypeString.ARRAY;
   metadata: object;
 };
 
 export type SparkStructType = {
   fields: SparkStructField[];
-  type: EnumSparkDataType.STRUCT;
+  type: SparkDataTypeString.STRUCT;
 };
 
 export type SparkStructField = {
